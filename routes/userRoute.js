@@ -12,5 +12,5 @@ router.post("/signup", signup);
 router.post("/login",login)
 // router.post("/saveHistory", history)
 router.post("/saveHistory", authMiddleware, history);
-router.get("/getHistory",getHistory)
+router.get("/getHistory",authMiddleware, getHistory)
 export default router;
