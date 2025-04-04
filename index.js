@@ -6,7 +6,7 @@ import userRoute from "./routes/userRoute.js";
 
 dotenv.config();
 const app=express();
-const port=process.env.PORT;
+const port=process.env.PORT||5000;
 
 const mongoURL=process.env.MONGODB_URL;
 
@@ -15,9 +15,10 @@ mongoose.connect(mongoURL)
     console.log("MongoDB connectd successfully")
 })
 .catch((err)=>{
-    console.log("MongoDB connection failed")
+    console.log("MongoDB connection failed",err.message)
 })
-app.use(cors());
+// app.use(cors());
+app.use(cors({ origin: "*" }));
 app.use(express.json());
 
 app.use("/api/user",userRoute);
